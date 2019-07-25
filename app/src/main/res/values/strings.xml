@@ -12,9 +12,13 @@
     <string name="imc">BIM</string>
     <string name="title_activity_conversao">Converter</string>
     <string name="cn">Convert</string>
+    <string name="cnvt">Convert to</string>
+    <string name="cnvrt">Convert</string>
 
     <string-array name="tipo">
+        <item>KB</item>
         <item>MB</item>
         <item>GB</item>
+        <item>TB</item>
     </string-array>
 </resources>

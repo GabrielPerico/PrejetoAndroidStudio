@@ -11,11 +11,14 @@
     <string name="sn">Senha</string>
     <string name="imc">IMC</string>
     <string name="cn">Corversão</string>
-
+    <string name="title_activity_conversao">Conversão</string>
+    <string name="cnvt">Converter para</string>
+    <string name="cnvrt">Converter</string>
 
     <string-array name="tipo">
+        <item>KB</item>
         <item>MB</item>
         <item>GB</item>
+        <item>TB</item>
     </string-array>
-    <string name="title_activity_conversao">Conversão</string>
 </resources>
