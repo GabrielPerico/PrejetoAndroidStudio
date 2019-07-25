@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".CalculoIMC"
+    tools:showIn="@layout/activity_calculo_imc">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="86dp"
+            android:layout_height="42dp"
+            android:gravity="center_horizontal"
+            android:text="@string/al"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/edtAltura"
+            android:layout_width="284dp"
+            android:layout_height="66dp"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            tools:layout_editor_absoluteX="99dp"
+            tools:layout_editor_absoluteY="172dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="86dp"
+            android:layout_height="47dp"
+            android:gravity="center_horizontal"
+            android:text="@string/ps"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/edtPeso"
+            android:layout_width="286dp"
+            android:layout_height="67dp"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            tools:layout_editor_absoluteX="99dp"
+            tools:layout_editor_absoluteY="261dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="#008577"
+            android:onClick="calcular"
+            android:text="@string/cl"
+            android:textColor="#ffffff"
+            tools:layout_editor_absoluteX="158dp"
+            tools:layout_editor_absoluteY="348dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="#008577"
+            android:onClick="limpar"
+            android:text="@string/lp"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/resultFinal"
+        android:layout_width="match_parent"
+        android:layout_height="67dp"
+        android:gravity="center"
+        android:textSize="18sp" />
+
+
+</LinearLayout>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="lg">Entrar</string>
+    <string name="app_name">Projetinho</string>
+    <string name="title_activity_calculo_imc">CalculoIMC</string>
+    <string name="title_activity_principal">Principal</string>
+    <string name="al">Altura</string>
+    <string name="ps">Peso</string>
+    <string name="cl">Calcular</string>
+    <string name="lp" >Limpar</string>
+    <string name="sn">Senha</string>
+    <string name="imc">IMC</string>
+    <string name="cn">Corversão</string>
+
+
+    <string-array name="tipo">
+        <item>MB</item>
+        <item>GB</item>
+    </string-array>
+    <string name="title_activity_conversao">Conversão</string>
+</resources>

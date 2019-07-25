@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Project</string>
+    <string name="title_activity_principal">Main</string>
+    <string name="title_activity_calculo_imc">Calculate BMI</string>
+    <string name="lg">Login</string>
+    <string name="al">Heigth</string>
+    <string name="ps">Weight</string>
+    <string name="cl">Calculate</string>
+    <string name="lp">Clear</string>
+    <string name="em" translatable="false">Email</string>
+    <string name="sn">Password</string>
+    <string name="imc">BIM</string>
+    <string name="title_activity_conversao">Converter</string>
+    <string name="cn">Convert</string>
+
+    <string-array name="tipo">
+        <item>MB</item>
+        <item>GB</item>
+    </string-array>
+</resources>
