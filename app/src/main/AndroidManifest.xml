@@ -10,8 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".convercao"
-            android:label="@string/title_activity_convercao"
+            android:name=".Conversao"
+            android:label="@string/title_activity_conversao"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".CalculoIMC"
