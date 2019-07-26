@@ -23,8 +23,6 @@ public class CalculoIMC extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculo_imc);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         edtAltura=findViewById(R.id.edtAltura);
         edtPeso=findViewById(R.id.edtPeso);

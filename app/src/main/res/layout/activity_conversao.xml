@@ -1,25 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="25dp"
     tools:context=".Conversao">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="78dp"
+        android:orientation="horizontal">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <EditText
+            android:id="@+id/edtNumero"
+            android:layout_width="123dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="number" />
+
+        <Spinner
+            android:id="@+id/converterDe"
+            android:layout_width="112dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+
+            android:entries="@array/tipo"
+            android:gravity="center"
+            android:scrollbarSize="7dp" />
+
+        <Button
+            android:layout_width="105dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#008577"
+            android:onClick="converterNum"
+            android:text="@string/cnvrt"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:layout_height="51dp"
+            android:orientation="horizontal">
 
-    </com.google.android.material.appbar.AppBarLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="KB"
+                android:textSize="18sp" />
 
-    <include layout="@layout/content_conversao" />
+            <TextView
+                android:id="@+id/edtKB"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </LinearLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="MB"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/edtMB"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="GB"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/edtGB"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:text="TB"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/edtTB"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/errorTxt"
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:textSize="18sp" />
+
+</LinearLayout>
