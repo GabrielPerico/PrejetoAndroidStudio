@@ -11,6 +11,7 @@
     <string name="sn">Password</string>
     <string name="imc">BIM</string>
     <string name="title_activity_conversao">Converter</string>
+    <string name="title_activity_main" translatable="false">Login</string>
     <string name="cn">Convert</string>
     <string name="cnvt">Convert to</string>
     <string name="cnvrt">Convert</string>
@@ -21,4 +22,6 @@
         <item>GB</item>
         <item>TB</item>
     </string-array>
+    <string name="title_activity_sobre">About</string>
+    <string name="sb">About</string>
 </resources>

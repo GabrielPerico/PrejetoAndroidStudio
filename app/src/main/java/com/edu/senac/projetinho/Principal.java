@@ -28,4 +28,9 @@ public class Principal extends AppCompatActivity {
         Intent i = new Intent(this,Conversao.class);
         startActivity(i);
     }
+
+    public void irParaSobre(View v){
+        Intent i = new Intent(this,Sobre.class);
+        startActivity(i);
+    }
 }

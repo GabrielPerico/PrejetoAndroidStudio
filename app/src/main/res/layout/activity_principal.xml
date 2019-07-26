@@ -36,4 +36,16 @@
         tools:layout_editor_absoluteX="134dp"
         tools:layout_editor_absoluteY="1dp" />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="#008577"
+        android:fontFamily="sans-serif"
+        android:onClick="irParaSobre"
+        android:text="@string/sb"
+        android:textColor="#ffffff"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="134dp"
+        tools:layout_editor_absoluteY="1dp" />
 </LinearLayout>

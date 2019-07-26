@@ -9,19 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Sobre"
+            android:label="@string/title_activity_sobre"></activity>
         <activity
             android:name=".Conversao"
-            android:label="@string/title_activity_conversao"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:label="@string/title_activity_conversao" />
         <activity
             android:name=".CalculoIMC"
-            android:label="@string/title_activity_calculo_imc"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_activity_calculo_imc" />
         <activity
             android:name=".Principal"
-            android:label="@string/title_activity_principal"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MainActivity">
+            android:label="@string/title_activity_principal" />
+        <activity android:name=".MainActivity"
+            android:label="@string/title_activity_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

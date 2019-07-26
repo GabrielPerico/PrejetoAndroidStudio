@@ -7,11 +7,13 @@
     <string name="al">Altura</string>
     <string name="ps">Peso</string>
     <string name="cl">Calcular</string>
+    <string name="sb">Sobre</string>
     <string name="lp" >Limpar</string>
     <string name="sn">Senha</string>
     <string name="imc">IMC</string>
     <string name="cn">Corversão</string>
     <string name="title_activity_conversao">Conversão</string>
+    <string name="title_activity_sobre">Sobre</string>
     <string name="cnvt">Converter para</string>
     <string name="cnvrt">Converter</string>
 
