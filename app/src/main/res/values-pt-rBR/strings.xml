@@ -16,11 +16,22 @@
     <string name="title_activity_sobre">Sobre</string>
     <string name="cnvt">Converter para</string>
     <string name="cnvrt">Converter</string>
-
+    <string-array name="spn_produto">
+        <item>COMPRADO</item>
+        <item>NÃO COMPRADO</item>
+    </string-array>
     <string-array name="tipo">
         <item>KB</item>
         <item>MB</item>
         <item>GB</item>
         <item>TB</item>
     </string-array>
+    <string name="title_activity_main">Projetinho</string>
+    <string name="list">Lista</string>
+    <string name="nm">Nome</string>
+    <string name="qt">Quantidade</string>
+    <string name="st">Status</string>
+    <string name="dl">Deletar</string>
+    <string name="sv">Salvar</string>
+    <string name="title_activity_lista_de_produtos">Lista De Produtos</string>
 </resources>

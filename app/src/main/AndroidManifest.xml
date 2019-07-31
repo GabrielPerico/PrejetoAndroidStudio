@@ -2,6 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.edu.senac.projetinho">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature
+        android:name="android.hardware.camera2.any"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera2.autofocus"
+        android:required="false" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,18 +18,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Sobre"
-            android:label="@string/title_activity_sobre"></activity>
+        <activity android:name=".ui.Produto"></activity>
         <activity
-            android:name=".Conversao"
+            android:name=".ui.ListaDeProdutos"
+            android:label="@string/title_activity_lista_de_produtos"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.Sobre"
+            android:label="@string/title_activity_sobre" />
+        <activity
+            android:name=".ui.Conversao"
             android:label="@string/title_activity_conversao" />
         <activity
-            android:name=".CalculoIMC"
+            android:name=".ui.CalculoIMC"
             android:label="@string/title_activity_calculo_imc" />
         <activity
-            android:name=".Principal"
+            android:name=".ui.Principal"
             android:label="@string/title_activity_principal" />
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".ui.MainActivity"
             android:label="@string/title_activity_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

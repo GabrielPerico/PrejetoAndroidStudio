@@ -1,7 +1,8 @@
-package com.edu.senac.projetinho;
+package com.edu.senac.projetinho.ui;
 
 import android.os.Bundle;
 
+import com.edu.senac.projetinho.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 

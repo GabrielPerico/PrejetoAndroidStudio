@@ -7,7 +7,7 @@
     android:baselineAligned="false"
     android:orientation="vertical"
     android:layout_margin="25dp"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
     <ImageView
         android:id="@+id/imageView3"
@@ -22,7 +22,9 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/em"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:text="aluno@senac.br"
+        tools:text="aluno@senac.br" />
 
     <EditText
         android:id="@+id/edtSenha"
@@ -30,7 +32,9 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/sn"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:text="senha"
+        tools:text="senha" />
 
     <Button
         android:id="@+id/button"

@@ -11,11 +11,15 @@
     <string name="sn">Password</string>
     <string name="imc">BIM</string>
     <string name="title_activity_conversao">Converter</string>
-    <string name="title_activity_main" translatable="false">Login</string>
+    <string name="title_activity_main">Project</string>
     <string name="cn">Convert</string>
     <string name="cnvt">Convert to</string>
     <string name="cnvrt">Convert</string>
-
+    <string name="list">List</string>
+    <string-array name="spn_produto">
+        <item>PURCHASED</item>
+        <item>NOT PURCHASED</item>
+    </string-array>
     <string-array name="tipo">
         <item>KB</item>
         <item>MB</item>
@@ -24,4 +28,10 @@
     </string-array>
     <string name="title_activity_sobre">About</string>
     <string name="sb">About</string>
+    <string name="title_activity_lista_de_produtos">Product List</string>
+    <string name="nm">Name</string>
+    <string name="qt">Quantity</string>
+    <string name="st">Status</string>
+    <string name="dl">Delete</string>
+    <string name="sv">Save</string>
 </resources>
