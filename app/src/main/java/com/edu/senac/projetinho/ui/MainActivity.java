@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.edu.senac.projetinho.R;
+import com.edu.senac.projetinho.helper.DatabaseHelper;
 import com.edu.senac.projetinho.model.Usuario;
 
 public class MainActivity extends AppCompatActivity {
@@ -64,15 +65,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void irParaPrincipal(View v) {
 
-        Usuario usuario = new Usuario();
-        usuario.setCodigo(1);
-        usuario.setEmail("aluno@senac.br");
-        usuario.setSenha("senha");
+        DatabaseHelper databaseHelper = new DatabaseHelper(this);
+
         String email = edtEmail.getText().toString(), senha = edtSenha.getText().toString();
 
-        if (email.equals(usuario.getEmail()) && senha.equals(usuario.getSenha())) {
-            Intent i = new Intent(this, Principal.class);
-            startActivity(i);
+        Usuario usuario=databaseHelper.validarUsuario(email,senha);
+
+        if (usuario != null) {
+            Toast.makeText(this,"Bem vindo "+email,Toast.LENGTH_SHORT ).show();
+            startActivity(new Intent(this,Principal.class));
+            finish();
         } else {
             Toast.makeText(this, "Usuario ou senha incorretos", Toast.LENGTH_SHORT).show();
         }

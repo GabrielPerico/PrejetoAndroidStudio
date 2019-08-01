@@ -10,25 +10,33 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.edu.senac.projetinho.R;
+import com.edu.senac.projetinho.helper.DatabaseHelper;
+import com.edu.senac.projetinho.model.Produto;
 
+import java.io.ByteArrayOutputStream;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Produto extends AppCompatActivity {
+public class CadastroProduto extends AppCompatActivity {
 
     Spinner status;
     ImageView imagem;
     EditText edtQtd, edtNome;
+    Button btnExcluir;
     boolean imageSlct = false;
 
     @Override
@@ -40,7 +48,12 @@ public class Produto extends AppCompatActivity {
         edtQtd = findViewById(R.id.edtQtd);
         edtNome = findViewById(R.id.edtNome);
         status = findViewById(R.id.edtStat);
+        btnExcluir = findViewById(R.id.btnExcluir);
 
+        //oculta
+        btnExcluir.setVisibility(View.GONE);
+        //visible
+        //btnExcluir.setVisibility(View.VISIBLE);
     }
 
     public void tirarFoto(View v) {
@@ -74,14 +87,39 @@ public class Produto extends AppCompatActivity {
         return true;
     }
 
+    public void deletar(View v){
+        DatabaseHelper databaseHelper = new DatabaseHelper(this);
+        //databaseHelper.removerProduto();
+    }
+
     public void salvar(View v) {
         String mensagem = validarCampos();
-        if (mensagem.length() == 0) {
-            Toast.makeText(Produto.this,"Salvo",Toast.LENGTH_SHORT).show();
-            salvarFormulario();
-        } else {
+        if(mensagem.equals("")){
+            DatabaseHelper databaseHelper = new DatabaseHelper(this);
+
+            Produto produto = new Produto();
+            produto.setFoto(getImagem());
+            produto.setNome(edtNome.getText().toString());
+            produto.setQuantidade(Integer.parseInt(edtQtd.getText().toString()));
+            produto.setStatus(status.getSelectedItem().toString().equals("COMPRADO")?"C":"N");
+
+            databaseHelper.salvarProduto(produto);
+            finish();
+        }else{
             mensagemErro(mensagem);
         }
+    }
+
+    public String getImagem(){
+        Bitmap bitmap = ((BitmapDrawable)imagem.getDrawable()).getBitmap();
+
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+
+        byte[] byteArray = byteArrayOutputStream.toByteArray();
+
+        return Base64.encodeToString(byteArray, Base64.DEFAULT);
     }
 
     public String validarCampos() {
@@ -101,10 +139,6 @@ public class Produto extends AppCompatActivity {
         return "";
     }
 
-    public void salvarFormulario() {
-
-    }
-
     public void mensagemErro(String mensagem) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Atenção");
@@ -112,13 +146,13 @@ public class Produto extends AppCompatActivity {
         builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface arg0, int arg1) {
-                Toast.makeText(Produto.this, "positivo=" + arg1, Toast.LENGTH_SHORT).show();
+                Toast.makeText(CadastroProduto.this, "positivo=" + arg1, Toast.LENGTH_SHORT).show();
             }
         });
         builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface arg0, int arg1) {
-                Toast.makeText(Produto.this, "negativo=" + arg1, Toast.LENGTH_SHORT).show();
+                Toast.makeText(CadastroProduto.this, "negativo=" + arg1, Toast.LENGTH_SHORT).show();
             }
         });
         builder.create().show();
