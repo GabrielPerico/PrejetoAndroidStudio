@@ -14,7 +14,9 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,17 +40,27 @@ public class ListaDeProdutos extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                i.removeExtra("produto");
                 startActivity(i);
             }
         });
 
         produtos = new ArrayList<>();
-        AdapterList adapterList = new AdapterList(produtos, this);
+        AdapterList adapter = new AdapterList(produtos, this);
         listaProdutos = findViewById(R.id.lista);
-        listaProdutos.setAdapter(adapterList);
-
+        listaProdutos.setAdapter(adapter);
 
         databaseHelper = new DatabaseHelper(this);
+
+        final Intent intent = new Intent(this, CadastroProduto.class);
+
+        listaProdutos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                intent.putExtra("produto",produtos.get(i));
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

@@ -17,14 +17,35 @@
     <string name="cnvrt">Convert</string>
     <string name="list">List</string>
     <string-array name="spn_produto">
-        <item>PURCHASED</item>
         <item>NOT PURCHASED</item>
+        <item>PURCHASED</item>
     </string-array>
     <string-array name="tipo">
         <item>KB</item>
         <item>MB</item>
         <item>GB</item>
         <item>TB</item>
+    </string-array>
+    <string-array name="tipoPkm">
+        <item>Selecione um tipo</item>
+        <item>Inseto</item>
+        <item>Dragão</item>
+        <item>Fada</item>
+        <item>Fogo</item>
+        <item>Fantasma</item>
+        <item>Terra</item>
+        <item>Normal</item>
+        <item>Psiquico</item>
+        <item>Metal</item>
+        <item>Escuridão</item>
+        <item>Eletrico</item>
+        <item>Lutador</item>
+        <item>Voador</item>
+        <item>Grama</item>
+        <item>Gelo</item>
+        <item>Veneno</item>
+        <item>Pedra</item>
+        <item>Água</item>
     </string-array>
     <string name="title_activity_sobre">About</string>
     <string name="sb">About</string>

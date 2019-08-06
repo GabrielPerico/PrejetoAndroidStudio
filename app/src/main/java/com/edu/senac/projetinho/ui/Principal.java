@@ -50,4 +50,9 @@ public class Principal extends AppCompatActivity {
         Intent i = new Intent(this, ListaDeProdutos.class);
         startActivity(i);
     }
+
+    public void irParaPokedex(View v){
+        Intent i = new Intent(this,CadastroPokemon.class);
+        startActivity(i);
+    }
 }

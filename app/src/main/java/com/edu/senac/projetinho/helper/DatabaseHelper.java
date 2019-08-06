@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
 
+import com.edu.senac.projetinho.model.Pokedex;
 import com.edu.senac.projetinho.model.Produto;
 import com.edu.senac.projetinho.model.Usuario;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
@@ -25,6 +26,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     private Dao<Usuario, Integer> usuarioDao = null;
     private Dao<Produto, Integer> produtoDao = null;
+    private Dao<Pokedex, Integer> pokemonDao = null;
 
     public DatabaseHelper(Context context) {
         super(context, NOME_BANCO, null, VERSAO);
@@ -35,6 +37,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         try {
             TableUtils.createTable(connectionSource, Usuario.class);
             TableUtils.createTable(connectionSource, Produto.class);
+            TableUtils.createTable(connectionSource, Pokedex.class);
 
             Usuario usuario = new Usuario();
             usuario.setEmail("aluno@senac.br");
@@ -53,6 +56,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         try {
             TableUtils.dropTable(connectionSource, Usuario.class, true);
             TableUtils.dropTable(connectionSource, Produto.class, true);
+            TableUtils.dropTable(connectionSource, Pokedex.class, true);
             onCreate(sqLiteDatabase, connectionSource);
         } catch (Exception e) {
             Log.e("banco", "Erro ao criar banco");
@@ -100,6 +104,14 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         }
     }
 
+    public void update (Produto produto){
+        try {
+            getProdutoDao().update(produto);
+        }catch (Exception e){
+            Log.e("banco","Falha ao atualizar produto");
+        }
+    }
+
     public List<Produto> buscarTodos(){
         List<Produto> produtos = null;
         try{
@@ -108,5 +120,21 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             Log.e("banco","Falha ao buscar produtos");
         }
         return new ArrayList<>();
+    }
+
+    public Dao<Pokedex, Integer> getPokemonDao() throws SQLException {
+        if (pokemonDao == null) {
+            pokemonDao = getDao(Pokedex.class);
+        }
+        return pokemonDao;
+    }
+
+    public void salvarPokemon(Pokedex pokedex){
+        try {
+            int id = getPokemonDao().create(pokedex);
+            Log.d("banco", "Total :" + getPokemonDao().countOf());
+        }catch (Exception e){
+            Log.e("banco", "Falha ao salvar pokemon");
+        }
     }
 }

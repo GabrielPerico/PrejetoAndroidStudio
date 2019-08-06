@@ -108,8 +108,8 @@
                 android:layout_marginRight="5dp"
                 android:onClick="deletar"
                 android:layout_weight="1"
-                android:background="#008577"
                 android:text="@string/dl"
+                android:background="#008577"
                 android:textColor="#ffffff" />
 
             <Button

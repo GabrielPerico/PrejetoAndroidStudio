@@ -17,8 +17,8 @@
     <string name="cnvt">Converter para</string>
     <string name="cnvrt">Converter</string>
     <string-array name="spn_produto">
-        <item>COMPRADO</item>
         <item>NÃO COMPRADO</item>
+        <item>COMPRADO</item>
     </string-array>
     <string-array name="tipo">
         <item>KB</item>
