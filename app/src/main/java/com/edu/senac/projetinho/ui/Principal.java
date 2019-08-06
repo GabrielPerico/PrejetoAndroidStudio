@@ -52,7 +52,7 @@ public class Principal extends AppCompatActivity {
     }
 
     public void irParaPokedex(View v){
-        Intent i = new Intent(this,CadastroPokemon.class);
+        Intent i = new Intent(this,ListaDePokemons.class);
         startActivity(i);
     }
 }

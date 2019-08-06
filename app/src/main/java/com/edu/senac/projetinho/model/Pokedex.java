@@ -8,8 +8,11 @@ import java.io.Serializable;
 @DatabaseTable
 public class Pokedex implements Serializable {
 
-    @DatabaseField(id=true,canBeNull = false)
+    @DatabaseField(generatedId = true)
     private Integer id;
+
+    @DatabaseField(canBeNull = false)
+    private Integer num;
 
     @DatabaseField(canBeNull = false)
     private String nome;
@@ -28,6 +31,14 @@ public class Pokedex implements Serializable {
 
     @DatabaseField
     private String evo;
+
+    public Integer getNum() {
+        return num;
+    }
+
+    public void setNum(Integer num) {
+        this.num = num;
+    }
 
     public Integer getId() {
         return id;

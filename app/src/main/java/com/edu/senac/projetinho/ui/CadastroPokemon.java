@@ -11,6 +11,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -38,6 +40,8 @@ public class CadastroPokemon extends AppCompatActivity {
     TextView nome,id;
     ImageView imgPkm;
     Boolean imageSlct = false;
+    Pokedex pkm;
+    Button btnDelete;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +53,41 @@ public class CadastroPokemon extends AppCompatActivity {
         tipo2 = findViewById(R.id.tipo2);
         preEvo = findViewById(R.id.preEvo);
         evo = findViewById(R.id.evo);
+        btnDelete = findViewById(R.id.btnDelete);
+
+        Intent i = getIntent();
+        pkm = (Pokedex) i.getSerializableExtra("pokemon");
+
+        if(pkm != null){
+            btnDelete.setVisibility(View.VISIBLE);
+            byte[] decodedString = Base64.decode(pkm.getImagem(), Base64.DEFAULT);
+            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+            imgPkm.setImageBitmap(decodedByte);
+            nome.setText(pkm.getNome());
+            id.setText(Integer.toString(pkm.getNum()));
+            for (Integer cnt = 1;cnt < tipo1.getAdapter().getCount();cnt++){
+                if(pkm.getTipoPrim().equals(tipo1.getItemAtPosition(cnt))){
+                    tipo1.setSelection(cnt);
+                }
+            }
+            for (Integer cnt = 1;cnt < tipo2.getAdapter().getCount();cnt++){
+                if(pkm.getTipoSec().equals(tipo2.getItemAtPosition(cnt))){
+                    tipo2.setSelection(cnt);
+                }
+            }
+            for (Integer cnt = 1;cnt < evo.getAdapter().getCount();cnt++){
+                if(pkm.getEvo().equals(evo.getItemAtPosition(cnt))){
+                    evo.setSelection(cnt);
+                }
+            }
+            for (Integer cnt = 1;cnt < preEvo.getAdapter().getCount();cnt++){
+                if(pkm.getPreEvo().equals(preEvo.getItemAtPosition(cnt))){
+                    preEvo.setSelection(cnt);
+                }
+            }
+        }else{
+            btnDelete.setVisibility(View.GONE);
+        }
     }
 
     public void pegarImagem(View v){
@@ -116,12 +155,12 @@ public class CadastroPokemon extends AppCompatActivity {
             DatabaseHelper databaseHelper = new DatabaseHelper(this);
             Pokedex pokemon = new Pokedex();
             pokemon.setImagem(getImagem());
-            pokemon.setId(Integer.parseInt(id.getText().toString()));
+            pokemon.setNum(Integer.parseInt(id.getText().toString()));
             pokemon.setNome(nome.getText().toString());
             pokemon.setTipoPrim(tipo1.getSelectedItem().toString());
             pokemon.setTipoSec((tipo2.getSelectedItemPosition() == 0)?"":tipo2.getSelectedItem().toString());
-            //pokemon.setPreEvo((preEvo.getSelectedItemPosition() == 0)?"":preEvo.getSelectedItem().toString());
-            //pokemon.setEvo((evo.getSelectedItemPosition() == 0)?"":evo.getSelectedItem().toString());
+            pokemon.setPreEvo((preEvo.getSelectedItemPosition() == 0)?"":preEvo.getSelectedItem().toString());
+            pokemon.setEvo((evo.getSelectedItemPosition() == 0)?"":evo.getSelectedItem().toString());
             databaseHelper.salvarPokemon(pokemon);
             finish();
         }else{

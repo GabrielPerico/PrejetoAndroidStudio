@@ -132,9 +132,18 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     public void salvarPokemon(Pokedex pokedex){
         try {
             int id = getPokemonDao().create(pokedex);
-            Log.d("banco", "Total :" + getPokemonDao().countOf());
+            Log.d("banco", "Total de pkm :" + getPokemonDao().countOf());
         }catch (Exception e){
             Log.e("banco", "Falha ao salvar pokemon");
         }
+    }
+    public List<Pokedex> buscarTodosPkm(){
+        List<Pokedex> pokedex = null;
+        try{
+            return getPokemonDao().queryBuilder().query();
+        }catch (Exception e){
+            Log.e("banco","Falha ao buscar pokemons");
+        }
+        return new ArrayList<>();
     }
 }

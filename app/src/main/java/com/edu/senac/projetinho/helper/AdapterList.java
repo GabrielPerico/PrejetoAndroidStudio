@@ -3,7 +3,6 @@ package com.edu.senac.projetinho.helper;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.util.Base64;
 import android.view.View;
 import android.view.ViewGroup;

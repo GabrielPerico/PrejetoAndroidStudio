@@ -26,6 +26,9 @@
         <item>GB</item>
         <item>TB</item>
     </string-array>
+    <string-array name="pokemonList">
+        <item>Selecione um pokémon</item>
+    </string-array>
     <string-array name="tipoPkm">
         <item>Selecione um tipo</item>
         <item>Inseto</item>
@@ -55,4 +58,5 @@
     <string name="st">Status</string>
     <string name="dl">Delete</string>
     <string name="sv">Save</string>
+    <string name="title_activity_lista_de_pokemons">ListaDePokemons</string>
 </resources>
