@@ -153,6 +153,7 @@
                 android:layout_weight="1"
                 android:background="#008577"
                 android:layout_marginRight="5dp"
+                android:onClick="deletarPkm"
                 android:textColor="#ffffff"
                 android:text="Deletar" />
 

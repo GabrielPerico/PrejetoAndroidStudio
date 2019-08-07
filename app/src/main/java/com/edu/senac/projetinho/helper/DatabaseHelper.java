@@ -146,4 +146,19 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         }
         return new ArrayList<>();
     }
+    public void removerPkm(Pokedex pokedex){
+        try{
+            getPokemonDao().delete(pokedex);
+        }catch (Exception e){
+            Log.e("banco","Falha ao remover produto");
+        }
+    }
+
+    public void updatePkm (Pokedex pokedex){
+        try {
+            getPokemonDao().update(pokedex);
+        }catch (Exception e){
+            Log.e("banco","Falha ao atualizar produto");
+        }
+    }
 }

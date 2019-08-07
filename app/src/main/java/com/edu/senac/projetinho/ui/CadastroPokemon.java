@@ -19,6 +19,7 @@ import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -33,15 +34,18 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class CadastroPokemon extends AppCompatActivity {
 
-    Spinner tipo1,tipo2,preEvo,evo;
-    TextView nome,id;
+    Spinner tipo1, tipo2, preEvo, evo;
+    TextView nome, id;
     ImageView imgPkm;
     Boolean imageSlct = false;
     Pokedex pkm;
     Button btnDelete;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,43 +59,53 @@ public class CadastroPokemon extends AppCompatActivity {
         evo = findViewById(R.id.evo);
         btnDelete = findViewById(R.id.btnDelete);
 
+        DatabaseHelper databaseHelper = new DatabaseHelper(this);
+
+        List<Pokedex> allPkm = databaseHelper.buscarTodosPkm();
+        List<String> nomes=allPkm.stream().map(x->x.getNome()).collect(Collectors.<String>toList());
+        nomes.add(0,"Nenhuma");
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, nomes);
+        preEvo.setAdapter(adapter);
+        evo.setAdapter(adapter);
+
         Intent i = getIntent();
         pkm = (Pokedex) i.getSerializableExtra("pokemon");
 
-        if(pkm != null){
+        if (pkm != null) {
             btnDelete.setVisibility(View.VISIBLE);
             byte[] decodedString = Base64.decode(pkm.getImagem(), Base64.DEFAULT);
             Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
             imgPkm.setImageBitmap(decodedByte);
             nome.setText(pkm.getNome());
             id.setText(Integer.toString(pkm.getNum()));
-            for (Integer cnt = 1;cnt < tipo1.getAdapter().getCount();cnt++){
-                if(pkm.getTipoPrim().equals(tipo1.getItemAtPosition(cnt))){
+            for (Integer cnt = 1; cnt < tipo1.getAdapter().getCount(); cnt++) {
+                if (pkm.getTipoPrim().equals(tipo1.getItemAtPosition(cnt))) {
                     tipo1.setSelection(cnt);
                 }
             }
-            for (Integer cnt = 1;cnt < tipo2.getAdapter().getCount();cnt++){
-                if(pkm.getTipoSec().equals(tipo2.getItemAtPosition(cnt))){
+            for (Integer cnt = 1; cnt < tipo2.getAdapter().getCount(); cnt++) {
+                if (pkm.getTipoSec().equals(tipo2.getItemAtPosition(cnt))) {
                     tipo2.setSelection(cnt);
                 }
             }
-            for (Integer cnt = 1;cnt < evo.getAdapter().getCount();cnt++){
-                if(pkm.getEvo().equals(evo.getItemAtPosition(cnt))){
+            for (Integer cnt = 1; cnt < evo.getAdapter().getCount(); cnt++) {
+                if (pkm.getEvo().equals(evo.getItemAtPosition(cnt))) {
                     evo.setSelection(cnt);
                 }
             }
-            for (Integer cnt = 1;cnt < preEvo.getAdapter().getCount();cnt++){
-                if(pkm.getPreEvo().equals(preEvo.getItemAtPosition(cnt))){
+            for (Integer cnt = 1; cnt < preEvo.getAdapter().getCount(); cnt++) {
+                if (pkm.getPreEvo().equals(preEvo.getItemAtPosition(cnt))) {
                     preEvo.setSelection(cnt);
                 }
             }
-        }else{
+            imageSlct = true;
+        } else {
             btnDelete.setVisibility(View.GONE);
         }
     }
 
-    public void pegarImagem(View v){
-        if(checkAndRequestPermissions()){
+    public void pegarImagem(View v) {
+        if (checkAndRequestPermissions()) {
             Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
             photoPickerIntent.setType("image/*");
             startActivityForResult(photoPickerIntent, 1);
@@ -114,8 +128,8 @@ public class CadastroPokemon extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == Activity.RESULT_OK)
-            switch (requestCode){
+        if (resultCode == Activity.RESULT_OK)
+            switch (requestCode) {
                 case 1:
                     Uri selectedImage = data.getData();
                     try {
@@ -129,43 +143,60 @@ public class CadastroPokemon extends AppCompatActivity {
             }
     }
 
-    public String validarCampos(){
-        if(!imageSlct){
+    public String validarCampos() {
+        if (!imageSlct) {
             Log.d("salvarPK", "Imagem não informada");
             return "O campo Imagem não foi informado!";
         }
-        if(id.getText().toString().trim().length() == 0){
+        if (id.getText().toString().trim().length() == 0) {
             Log.d("salvarPK", "Número não informado");
             return "O campo Número não foi informado!";
         }
-        if(nome.getText().toString().trim().length() == 0){
+        if (nome.getText().toString().trim().length() == 0) {
             Log.d("salvarPK", "Nome não informado");
             return "O campo Nome não foi informado!";
         }
-        if(tipo1.getSelectedItemPosition() == 0){
+        if (tipo1.getSelectedItemPosition() == 0) {
             Log.d("salvarPK", "Tipo não informado");
             return "O campo Tipo não foi informado!";
         }
         return "";
     }
 
-    public void salvarPkm(View v){
+    public void salvarPkm(View v) {
         String mensagem = validarCampos();
-        if(mensagem.equals("")){
+        if (mensagem.equals("")) {
             DatabaseHelper databaseHelper = new DatabaseHelper(this);
-            Pokedex pokemon = new Pokedex();
-            pokemon.setImagem(getImagem());
-            pokemon.setNum(Integer.parseInt(id.getText().toString()));
-            pokemon.setNome(nome.getText().toString());
-            pokemon.setTipoPrim(tipo1.getSelectedItem().toString());
-            pokemon.setTipoSec((tipo2.getSelectedItemPosition() == 0)?"":tipo2.getSelectedItem().toString());
-            pokemon.setPreEvo((preEvo.getSelectedItemPosition() == 0)?"":preEvo.getSelectedItem().toString());
-            pokemon.setEvo((evo.getSelectedItemPosition() == 0)?"":evo.getSelectedItem().toString());
-            databaseHelper.salvarPokemon(pokemon);
+            if (pkm == null) {
+                Pokedex pokemon = new Pokedex();
+                pokemon.setImagem(getImagem());
+                pokemon.setNum(Integer.parseInt(id.getText().toString()));
+                pokemon.setNome(nome.getText().toString());
+                pokemon.setTipoPrim(tipo1.getSelectedItem().toString());
+                pokemon.setTipoSec((tipo2.getSelectedItemPosition() == 0) ? "" : tipo2.getSelectedItem().toString());
+                pokemon.setPreEvo((preEvo.getSelectedItemPosition() == 0) ? "" : preEvo.getSelectedItem().toString());
+                pokemon.setEvo((evo.getSelectedItemPosition() == 0) ? "" : evo.getSelectedItem().toString());
+                databaseHelper.salvarPokemon(pokemon);
+            } else {
+                pkm.setImagem(getImagem());
+                pkm.setNum(Integer.parseInt(id.getText().toString()));
+                pkm.setNome(nome.getText().toString());
+                pkm.setTipoPrim(tipo1.getSelectedItem().toString());
+                pkm.setTipoSec((tipo2.getSelectedItemPosition() == 0) ? "" : tipo2.getSelectedItem().toString());
+                pkm.setPreEvo((preEvo.getSelectedItemPosition() == 0) ? "" : preEvo.getSelectedItem().toString());
+                pkm.setEvo((evo.getSelectedItemPosition() == 0) ? "" : evo.getSelectedItem().toString());
+                databaseHelper.updatePkm(pkm);
+            }
             finish();
-        }else{
+        } else {
             mensagemErro(mensagem);
         }
+    }
+    public void deletarPkm(View v) {
+        DatabaseHelper databaseHelper = new DatabaseHelper(this);
+        databaseHelper.removerPkm(pkm);
+        finish();
+        Toast.makeText(CadastroPokemon.this, "Pokemon removido", Toast.LENGTH_SHORT).show();
     }
 
     public void mensagemErro(String mensagem) {
