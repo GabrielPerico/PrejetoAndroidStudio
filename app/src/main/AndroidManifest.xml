@@ -20,10 +20,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.JogoDaVelha"></activity>
         <activity
             android:name=".ui.ListaDePokemons"
             android:label="@string/title_activity_lista_de_pokemons"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.CadastroPokemon" />
         <activity android:name=".ui.CadastroProduto" />
         <activity

@@ -55,4 +55,9 @@ public class Principal extends AppCompatActivity {
         Intent i = new Intent(this,ListaDePokemons.class);
         startActivity(i);
     }
+
+    public void irParaJDV(View v){
+        Intent i = new Intent(this,JogoDaVelha.class);
+        startActivity(i);
+    }
 }
